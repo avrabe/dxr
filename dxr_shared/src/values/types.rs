@@ -62,7 +62,7 @@ impl Value {
     /// Using the `TryFromValue` and `TryToValue` trait implementations for [`String`] and
     /// [`&str`][str] is recommended, as those handle escaping and un-escaping automatically.
     pub fn string(value: &str) -> Value {
-        let string = escape(value.trim()).to_string();
+        let string = format!("<![CDATA[{value.trim()}\n]]>").to_string(); //escape(value.trim()).to_string();
         Value::new(Type::String(string))
     }
 
